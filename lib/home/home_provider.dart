@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 class NetProvider extends ChangeNotifier {
   bool isNet = false;
+  double progress = 0;
+  bool canGoBack = false;
+  bool canGoForward = false;
 
   ConnectivityResult connectivityResult = ConnectivityResult.none;
 
@@ -15,8 +18,20 @@ class NetProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeProgress(double progress) {
+    this.progress = progress;
+    notifyListeners();
+  }
+
+  void backForwardStatus(bool canGoBack,bool canGoForward) {
+    this.canGoBack = canGoBack;
+    this.canGoForward = canGoForward;
+    notifyListeners();
+  }
+
+
   void addNetListener() {
-    Connectivity().onConnectivityChanged.listen((event) {
+    var listen = Connectivity().onConnectivityChanged.listen((event) {
       connectivityResult = event;
       notifyListeners();
     });

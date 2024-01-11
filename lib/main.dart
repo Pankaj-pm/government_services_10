@@ -5,6 +5,9 @@ import 'package:government_services/home/home_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //  for error goto /android/app/build.gradle
+  // and change targetSdkVersion 34, compileSdkVersion 34
   runApp(MyApp());
 }
 
